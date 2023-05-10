@@ -1,14 +1,11 @@
-import React,{Component} from 'react'
-
-
-class App2 extends Component {
-    render() {
-      return (
-        <div className='App'>
-        <h1>Hello 2</h1>
-        </div>
-        )
-  }
+function App2(props) {
+  return (
+    <div className='App'>
+          <h1>Name: {props.name}</h1>
+          <h4>Age : {props.age}</h4>
+          <p>Info : { props.children}</p>
+    </div>
+  )
 }
 
 
