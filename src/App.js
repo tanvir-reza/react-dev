@@ -1,5 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
+
+// import React,{Component} from 'react'
+
+import App2 from './components/Person';
 
 function App() {
   return (
@@ -10,12 +13,8 @@ function App() {
   );
 }
 
-function App2() {
-  return (
-    <div className='App'>
-      <h1>Hello 2</h1>
-    </div>
-  )
-}
+
+
+
 
 export default App;
