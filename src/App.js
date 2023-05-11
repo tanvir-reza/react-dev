@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import './App.css';
 
 import React,{Component} from 'react';
@@ -6,44 +8,46 @@ import Book from './components/Book';
 class App extends Component {
   state = {
     books  : [
-      {bookName : "CSE101" , writer: "A"},
-      {bookName : "CSE102" , writer: "B"},
-      {bookName : "CSE103" , writer: "C"},
-      {bookName : "CSE104" , writer: "D"},
+      {id : "1",bookName : "CSE101" , writer: "A"},
+      {id : "2",bookName : "CSE102" , writer: "B"},
+      {id : "3",bookName : "CSE103" , writer: "C"},
+      {id : "4",bookName : "CSE104" , writer: "D"},
     ],
     other: "Other Info"
   }
 
-  ClickHandle = changeName => {
+
+  deleteHandle = index => {
+    const books = [...this.state.books]
+    books.splice(index, 1);
     this.setState({
-      books  : [
-      {bookName : changeName , writer: "A"},
-      {bookName : "CSE102" , writer: "B"},
-      {bookName : "CSE103" , writer: "C"},
-      {bookName : "CSE104" , writer: "D"},
-    ]
+      books : books
     })
+
   }
 
-  ChangeHandle = event => {
-    this.setState({
-      books  : [
-      {bookName : event.target.value , writer: "A"},
-      {bookName : "CSE102" , writer: "B"},
-      {bookName : "CSE103" , writer: "C"},
-      {bookName : "CSE104" , writer: "D"},
-    ]
-    })
+  inputHandle = (event,index) => {
+    const books = []
   }
+  
+   
+  
   render() {
+
+  const books = this.state.books.map((book,index)=> {
+    return (
+      <Book
+        name={book.bookName}
+        writer={book.writer}
+        delete={() => this.deleteHandle(index)}
+        input={(event) => this.inputHandle(event,index)}
+        key = {book.id}
+      />
+    )
+  });
     return (
       <div className="App">
-        {/* <button onClick={this.ClickHandle}>Click To Change</button> */}
-        <input type="test" onChange={this.ChangeHandle} />
-      <Book change={this.ClickHandle.bind(this,"OKY")} name={this.state.books[0].bookName} writer = {this.state.books[0].writer} />
-      <Book name={this.state.books[1].bookName} writer = {this.state.books[1].writer} />
-      <Book name={this.state.books[2].bookName} writer = {this.state.books[2].writer} />
-      <Book name={this.state.books[3].bookName} writer = {this.state.books[3].writer} />
+        {books}
         
     </div>
   );
